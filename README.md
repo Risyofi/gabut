@@ -1,8 +1,4 @@
-# gabut
-cmd 
-file 
-kanan(properties)
-/k name 
+
 [ ]
 [x]
 - [ ] Tugas 1
