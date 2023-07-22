@@ -1,0 +1,207 @@
+use uas_sbd;
+/*
+CREATE TABLE Mahasiswa (
+    nim int PRIMARY KEY,
+    nama VARCHAR(45),
+    nilai int,
+    kota VARCHAR(45)
+);
+
+CREATE TABLE Transaksi (
+    id int PRIMARY KEY,
+    nim int,
+    barang VARCHAR(45),
+    harga int
+);
+
+
+INSERT INTO Mahasiswa (nim, nama, nilai, kota) VALUES
+(1, 'Adi', 80, 'Solo'),
+(2, 'Budi', 86, 'Jogja'),
+(3, 'Caca', 72, 'Jakarta'),
+(4, 'Dania', 59, 'Solo'),
+(5, 'Elsa', 62, 'Jakarta');
+
+INSERT INTO Transaksi (id, nim, barang, harga) VALUES
+(1, 1, 'Buku', 70000),
+(2, 1, 'Pena', 20000),
+(3, 3, 'Sepatu', 300000),
+(4, 5, 'Kaos', 50000),
+(5, 6, 'Topi', 100000);
+
+
+SELECT * FROM Mahasiswa;
+SELECT * FROM Transaksi;
+
+
+
+
+SELECT nama
+FROM Mahasiswa
+WHERE nama LIKE '%_a_%';
+
+SELECT nama
+FROM Mahasiswa
+WHERE nilai > 70;
+
+SELECT COUNT(*) AS 'Jumalah Mahsiswa', MIN(nilai) AS 'nilai minimum', max(nilai) as 'nilai max'
+from Mahasiswa;
+
+
+
+CREATE TABLE Matakuliah (
+    id_mk VARCHAR(10) PRIMARY KEY,
+    nama_mk VARCHAR(45),
+    sks int,
+    semester ENUM('Ganjil', 'Genap')
+);
+
+
+INSERT INTO Matakuliah (id_mk, nama_mk, sks, semester) VALUES
+('TIF2230321', 'Praktikum Sistem Operasi', 1, 'Ganjil'),
+('TIF2230423', 'Metode Numerik', 3, 'Ganjil'),
+('TIF2230523', 'Pemrograman Berorientasi Objek', 3, 'Ganjil'),
+('TIF2230621', 'Praktikum Pemrograman Berorientasi Obyek', 1, 'Ganjil'),
+('TIF2230723', 'Matematika Diskret', 3, 'Ganjil'),
+('TIF2230823', 'Komunikasi Data', 3, 'Ganjil'),
+('TIF2240323', 'Algoritma dan Struktur Data', 3, 'Genap'),
+('TIF2240421', 'Praktikum Algoritma dan Struktur Data', 1, 'Genap'),
+('TIF2240533', 'Pemrograman WEB', 3, 'Genap'),
+('TIF2240631', 'Praktikum Pemrograman WEB', 1, 'Genap'),
+('TIF2240733', 'Jaringan Komputer', 3, 'Genap'),
+('TIF2240831', 'Praktikum Jaringan Komputer', 1, 'Genap'),
+('TIF2240933', 'Rekayasa Perangkat Lunak', 3, 'Genap'),
+('TIF2241022', 'Organisasi dan Arsitektur Komputer', 2, 'Genap');
+
+
+SELECT * FROM Matakuliah;
+
+*/
+
+/*
+SELECT nama_mk AS 'nama matakuliah', sks, semester
+FROM Matakuliah
+WHERE sks = 3 AND semester = 'Ganjil';
+
+
+## Tampilkan nama matakuliah yang berawalan kata 'Praktikum'
+SELECT nama_mk AS 'nama matakuliah'
+FROM Matakuliah
+WHERE nama_mk LIKE 'Praktikum%';
+
+
+## Tampilkan id matakuliah, nama mata kuliah, sks dengan id matakuliah diakhiri dengan angka 3 dan semesternya genap
+SELECT id_mk AS 'id matakuliah', nama_mk AS 'nama matakuliah', sks
+FROM Matakuliah
+WHERE id_mk LIKE '%3' AND semester = 'Genap';
+
+
+## Tampilkan nama matakuliah, semester, sks, dan urutkan berdasarkan nama matakuliah dari yang paling kecil ke yang terbesar
+SELECT nama_mk AS 'nama matakuliah', semester, sks
+FROM Matakuliah
+ORDER BY nama_mk ASC;
+
+
+## Tampilkan jumlah sks yang disediakan pada semester ganjil dan genap
+SELECT semester, SUM(sks) AS total_sks
+FROM Matakuliah
+GROUP BY semester;
+*/
+
+
+## 2
+/*
+CREATE TABLE Pasien (
+    id_pasien INT PRIMARY KEY,
+    nama VARCHAR(45),
+    keluhan VARCHAR(100),
+    alamat VARCHAR(100)
+);
+
+CREATE TABLE Obat (
+    id_obat VARCHAR(10) PRIMARY KEY,
+    nama_obat VARCHAR(45),
+    masa_berlaku VARCHAR(15),
+    harga int,
+    id_pasien INT,
+    FOREIGN KEY (id_pasien) REFERENCES Pasien(id_pasien)
+);
+
+INSERT INTO Pasien (id_pasien, nama, keluhan, alamat)
+VALUES
+(1, 'Agus', 'Pusing', 'Jakarta'),
+(2, 'Amin', 'Sesak Nafas', 'Solo'),
+(3, 'Amir', 'Nyeri Sendi', 'Sleman'),
+(4, 'Ziyad', 'Sakit Gigi', 'Boyolali'),
+(5, 'Fahmi', 'Batuk', 'Sleman');
+
+INSERT INTO Obat (id_obat, nama_obat, masa_berlaku, harga, id_pasien)
+VALUES
+('001', 'Paracetamol', '2022-11-20', 20000, 1),
+('002', 'Bronkodilator', '2024-02-12', 100000, 2),
+('003', 'Allopurinol', '2021-06-10', 35000, 3),
+('004', 'Dexamethasone', '2022-07-22', 50000, 4),
+('005', 'Konidin', '2023-05-23', 10000, 5);
+
+
+SELECT * FROM Pasien;
+SELECT * FROM Obat;
+*/
+
+/*
+## 2
+## Tuliskan notasi aljabar relasional untuk perintah berikut ini.
+## a. dengan menggunakan tabel Pasien, kita akan mengambil id_pasien, nama, dan keluhan dari pasien, dimana alamat adalah Sleman dan Solo
+SELECT id_pasien, nama, keluhan
+FROM Pasien
+WHERE alamat IN('Sleman', 'Solo')
+
+
+
+## b. dengan menggunakan tabel Pasien, kita akan mengambil nama depan dari pasien, yang beralamat di Jakarta atau mempunyai nama berawalan 'F'
+## nama depan
+SELECT substring_index(nama, ' ', 1) as 'nama depan'
+FROM Pasien
+WHERE alamat = 'Jakarta' OR nama LIKE 'F%';
+
+## huruf depan
+SELECT substring(nama, 1, 1) as 'huruf depan'
+FROM Pasien
+WHERE alamat = 'Jakarta' OR nama LIKE 'F%';
+*/
+
+
+## 3
+## Tuliskan query dari tabel pasien dan tabel obat unruk menggabungkan tabel dengan fungsi:
+## a. INNER JOIN
+/*
+SELECT *
+FROM Pasien
+INNER JOIN Obat ON Pasien.id_pasien = Obat.id_pasien;
+
+## b. LEFT JOIN
+SELECT *
+FROM Pasien
+LEFT JOIN Obat ON Pasien.id_pasien = Obat.id_pasien;
+
+## c. RIGHT JOIN
+SELECT *
+FROM Pasien
+RIGHT JOIN Obat ON Pasien.id_pasien = Obat.id_pasien;
+
+## d. FULL JOIN
+SELECT *
+FROM pasien
+FULL JOIN obat ON Pasien.id_pasien = Obat.id_pasien;
+
+SELECT AVG(harga) as 'rata-rata harga obat'
+from Obat;
+*/
+
+Select nama_obat, harga
+from Obat
+where harga > 40000;
+
+select nama_obat
+from Obat
+where nama_obat like '%l';
