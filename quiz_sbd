@@ -1,0 +1,52 @@
+use quiz_sbd;
+/*
+CREATE TABLE Ujian (
+    id_peserta VARCHAR(5) PRIMARY KEY,
+    nama_peserta VARCHAR(50) NOT NULL,
+    nilai_ujian INT NOT NULL,
+    jurusan VARCHAR(20) NOT NULL
+);
+
+INSERT INTO Ujian (id_peserta, nama_peserta, nilai_ujian, jurusan)
+VALUES
+    ('A001', 'Galih Prakoso', 70, 'IPA'),
+    ('A002', 'Joko Lestanto', 75, 'IPS'),
+    ('A003', 'Mira Asmara', 88, 'Bahasa'),
+    ('A004', 'Heri Santosa', 71, 'IPS'),
+    ('A005', 'Ahmad Hasan', 55, 'Bahasa'),
+    ('A006', 'Tri Winarno', 62, 'IPS'),
+    ('A007', 'Andini Putri', 92, 'IPA'),
+    ('A008', 'Farhan Aditya', 84, 'IPA'),
+    ('A009', 'Andika Paundra', 79, 'IPS');
+
+*/
+/*
+## Soal
+Buatlah perintah untuk menampilkan namapeserta ujian yang nilainya paling tinggi
+Buatlah perintah untuk menampilkan nilai rata-rata tertinggi pada suatu jurusan.
+Buatlah perintah untuk menampilkan nama peserta ujian yang nilainya di atas nilai rata-rata
+
+*/
+
+SELECT nama_peserta
+from Ujian
+where nilai_ujian = (
+    select max(nilai_ujian)
+    from Ujian
+);
+
+SELECT MAX(rata_rata_nilai) AS "MAX(nilai_rata_rerata)"
+FROM (
+    SELECT jurusan, AVG(nilai_ujian) AS rata_rata_nilai
+    FROM Ujian
+    GROUP BY jurusan
+) AS nilai_per_jurusan;
+
+
+SELECT nama_peserta
+FROM Ujian
+WHERE nilai_ujian > (
+    SELECT AVG(nilai_ujian)
+    FROM Ujian
+);
+
